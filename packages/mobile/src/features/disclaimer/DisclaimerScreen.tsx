@@ -1,18 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   SCREENING_DISCLAIMER,
   mobileLibraryName,
 } from '@hiperhealth/hphvision-lib';
-import {runStartupChecks} from '../../app/startup';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, spacing, typography} from '../../theme';
+import { runStartupChecks } from '../../app/startup';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, spacing, typography } from '../../theme';
 
 export const DisclaimerScreen = () => {
-  const {actions} = useHphVisionApp();
+  const { actions } = useHphVisionApp();
   const startup = runStartupChecks();
 
   const continueToOnboarding = () => {

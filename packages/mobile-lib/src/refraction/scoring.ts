@@ -1,4 +1,4 @@
-import {clamp, roundToStep} from '../validation';
+import { clamp, roundToStep } from '../validation';
 import type {
   EyeRefractionEstimate,
   RefractionRange,

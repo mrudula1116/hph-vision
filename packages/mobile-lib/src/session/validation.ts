@@ -5,8 +5,8 @@ import {
   validationIssue,
   type ValidationResult,
 } from '../validation';
-import type {EyeRefractionEstimate, RefractionResult} from '../refraction';
-import type {TestSession} from './types';
+import type { EyeRefractionEstimate, RefractionResult } from '../refraction';
+import type { TestSession } from './types';
 
 // validates that a reliability score is a finite number in [0, 1]
 export const validateReliabilityScore = (

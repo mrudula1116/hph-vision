@@ -1,4 +1,4 @@
-import type {TriageQuestion} from './types';
+import type { TriageQuestion } from './types';
 
 export const TRIAGE_QUESTIONS: TriageQuestion[] = [
   {

@@ -1,13 +1,13 @@
-import type {PhoneGeometry} from '../device-profile';
-import type {TemplateOptions, TemplatePage} from './types';
-import {getPageDimensions} from './pages';
-import {line, point, rect, text, roundedRect} from './primitives';
+import type { PhoneGeometry } from '../device-profile';
+import type { TemplateOptions, TemplatePage } from './types';
+import { getPageDimensions } from './pages';
+import { line, point, rect, text, roundedRect } from './primitives';
 
 export const createTemplatePage = (
   phone: PhoneGeometry,
   options: TemplateOptions,
 ): TemplatePage => {
-  const {widthMm, heightMm} = getPageDimensions(options.pageSize);
+  const { widthMm, heightMm } = getPageDimensions(options.pageSize);
   const marginMm = 10;
   const clearanceMm = 2;
   const slotWidthMm = phone.bodyWidthMm + clearanceMm;

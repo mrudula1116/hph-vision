@@ -1,22 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   calculateReliability,
   createEmptyTestSession,
   createScreeningReport,
   HPHVISION_LIB_VERSION,
 } from '@hiperhealth/hphvision-lib';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, radii, spacing, typography} from '../../theme';
-import {formatDiopter, formatPercent} from '../../utils/format';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, radii, spacing, typography } from '../../theme';
+import { formatDiopter, formatPercent } from '../../utils/format';
 
 const APP_VERSION = '0.0.1';
 
 export const ResultsScreen = () => {
-  const {state, actions} = useHphVisionApp();
+  const { state, actions } = useHphVisionApp();
   const hasBlockingTriage = (state.triageResult?.redFlags.length ?? 0) > 0;
 
   const buildReport = () => {

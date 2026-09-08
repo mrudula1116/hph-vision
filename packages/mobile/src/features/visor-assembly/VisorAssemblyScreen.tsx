@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, radii, spacing, typography} from '../../theme';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, radii, spacing, typography } from '../../theme';
 
 const checklistItems = [
   'Printed at 100% scale; not fit-to-page.',
@@ -16,13 +16,13 @@ const checklistItems = [
 ];
 
 export const VisorAssemblyScreen = () => {
-  const {state, actions} = useHphVisionApp();
+  const { state, actions } = useHphVisionApp();
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const allChecked = checklistItems.every(item => checked[item]);
   const instructions = state.templateDocument?.instructions ?? [];
 
   const toggle = (item: string) => {
-    setChecked(previous => ({...previous, [item]: !previous[item]}));
+    setChecked(previous => ({ ...previous, [item]: !previous[item] }));
   };
 
   return (
@@ -44,7 +44,7 @@ export const VisorAssemblyScreen = () => {
       {checklistItems.map(item => (
         <Pressable
           accessibilityRole="checkbox"
-          accessibilityState={{checked: Boolean(checked[item])}}
+          accessibilityState={{ checked: Boolean(checked[item]) }}
           key={item}
           onPress={() => toggle(item)}
           style={[

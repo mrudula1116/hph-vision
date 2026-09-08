@@ -3,7 +3,7 @@ module.exports = {
 
   moduleNameMapper: {
     '^@hiperhealth/hphvision-lib$': '<rootDir>/../mobile-lib/src',
-    '^@hiperhealth/hphvision-lib/(.*)$': '<rootDir>/../mobile-lib/src/',
+    '^@hiperhealth/hphvision-lib/(.*)$': '<rootDir>/../mobile-lib/src/$1',
   },
 
   transformIgnorePatterns: [

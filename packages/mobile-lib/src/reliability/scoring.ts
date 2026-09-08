@@ -1,6 +1,6 @@
-import {clamp} from '../validation';
-import {normalizeReliabilitySignals} from './signals';
-import type {ReliabilityResult, ReliabilitySignals} from './types';
+import { clamp } from '../validation';
+import { normalizeReliabilitySignals } from './signals';
+import type { ReliabilityResult, ReliabilitySignals } from './types';
 
 /**
  * Calculates a reliability score for a test session based on sensor signals.
@@ -36,10 +36,10 @@ export const calculateReliability = (
     score >= 0.8
       ? 'high'
       : score >= 0.6
-      ? 'medium'
-      : score >= 0.35
-      ? 'low'
-      : 'invalid';
+        ? 'medium'
+        : score >= 0.35
+          ? 'low'
+          : 'invalid';
 
   return {
     score,

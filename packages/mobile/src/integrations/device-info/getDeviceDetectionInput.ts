@@ -1,5 +1,5 @@
-import {Dimensions, PixelRatio, Platform} from 'react-native';
-import type {DeviceDetectionInput} from '@hiperhealth/hphvision-lib';
+import { Dimensions, PixelRatio, Platform } from 'react-native';
+import type { DeviceDetectionInput } from '@hiperhealth/hphvision-lib';
 
 export const getDeviceDetectionInput = (): DeviceDetectionInput => {
   const window = Dimensions.get('window');

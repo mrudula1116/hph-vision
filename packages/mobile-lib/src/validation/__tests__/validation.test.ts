@@ -1,6 +1,6 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 
-import {combineValidationResults, invalid, valid, validationIssue} from '..';
+import { combineValidationResults, invalid, valid, validationIssue } from '..';
 
 describe('combineValidationResults', () => {
   it('combines errors', () => {

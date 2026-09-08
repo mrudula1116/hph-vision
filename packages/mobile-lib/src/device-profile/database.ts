@@ -1,4 +1,4 @@
-import type {DeviceProfile} from './types';
+import type { DeviceProfile } from './types';
 
 export const DEVICE_PROFILES: DeviceProfile[] = [
   {
@@ -14,7 +14,7 @@ export const DEVICE_PROFILES: DeviceProfile[] = [
     screenWidthMm: 62,
     screenHeightMm: 124,
     templateFamily: 'generic-slab',
-    notchMask: {kind: 'unknown'},
+    notchMask: { kind: 'unknown' },
   },
   {
     id: 'generic-medium-phone',
@@ -29,7 +29,7 @@ export const DEVICE_PROFILES: DeviceProfile[] = [
     screenWidthMm: 68,
     screenHeightMm: 145,
     templateFamily: 'generic-slab',
-    notchMask: {kind: 'unknown'},
+    notchMask: { kind: 'unknown' },
   },
   {
     id: 'generic-large-phone',
@@ -44,7 +44,7 @@ export const DEVICE_PROFILES: DeviceProfile[] = [
     screenWidthMm: 73,
     screenHeightMm: 156,
     templateFamily: 'generic-slab',
-    notchMask: {kind: 'unknown'},
+    notchMask: { kind: 'unknown' },
   },
 ];
 

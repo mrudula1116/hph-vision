@@ -1,4 +1,4 @@
-import {buildApiUrl, type ApiClientConfig} from './client';
+import { buildApiUrl, type ApiClientConfig } from './client';
 
 export type HealthStatus = {
   ok: boolean;
@@ -11,11 +11,11 @@ export const getHealthStatus = async (
   try {
     const response = await fetch(buildApiUrl('/health', config));
     if (!response.ok) {
-      return {ok: false, status: `${response.status}`};
+      return { ok: false, status: `${response.status}` };
     }
 
-    return {ok: true, status: 'reachable'};
+    return { ok: true, status: 'reachable' };
   } catch {
-    return {ok: false, status: 'offline'};
+    return { ok: false, status: 'offline' };
   }
 };

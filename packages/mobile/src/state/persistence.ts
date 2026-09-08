@@ -1,4 +1,4 @@
-import type {HphVisionAppState} from './sessionStore';
+import type { HphVisionAppState } from './sessionStore';
 
 export type PersistedSessionDraft = {
   savedAt: string;

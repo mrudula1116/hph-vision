@@ -1,6 +1,6 @@
-import type {AcuityTrial} from '../acuity';
-import type {RefractionTrial} from '../refraction';
-import type {VoiceCommand, VoiceRecognitionCandidate} from './types';
+import type { AcuityTrial } from '../acuity';
+import type { RefractionTrial } from '../refraction';
+import type { VoiceCommand, VoiceRecognitionCandidate } from './types';
 
 const COMMAND_SYNONYMS: Record<VoiceCommand, string[]> = {
   better: ['better', 'clearer', 'best'],

@@ -1,8 +1,8 @@
-import {HPHVISION_LIB_VERSION} from '../types';
-import {ACUITY_PROTOCOL_VERSION} from '../acuity';
-import {REFRACTION_PROTOCOL_VERSION} from '../refraction';
-import {TEMPLATE_VERSION} from '../template-generator';
-import type {ProtocolVersions} from './types';
+import { HPHVISION_LIB_VERSION } from '../types';
+import { ACUITY_PROTOCOL_VERSION } from '../acuity';
+import { REFRACTION_PROTOCOL_VERSION } from '../refraction';
+import { TEMPLATE_VERSION } from '../template-generator';
+import type { ProtocolVersions } from './types';
 
 export const REPORT_SCHEMA_VERSION = 'report-v0.1';
 

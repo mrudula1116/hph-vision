@@ -24,17 +24,17 @@ export const validationIssue = (
   message: string,
   field?: string,
   severity: ValidationIssueSeverity = 'error',
-): ValidationIssue => ({code, message, field, severity});
+): ValidationIssue => ({ code, message, field, severity });
 
 export const valid = <T>(
   value: T,
   warnings: ValidationIssue[] = [],
-): ValidationResult<T> => ({ok: true, value, warnings});
+): ValidationResult<T> => ({ ok: true, value, warnings });
 
 export const invalid = <T = never>(
   errors: ValidationIssue[],
   warnings: ValidationIssue[] = [],
-): ValidationResult<T> => ({ok: false, errors, warnings});
+): ValidationResult<T> => ({ ok: false, errors, warnings });
 
 export const combineValidationResults = (
   ...results: ValidationResult<unknown>[]

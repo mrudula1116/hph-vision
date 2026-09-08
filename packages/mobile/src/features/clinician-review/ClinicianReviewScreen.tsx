@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, radii, spacing, typography} from '../../theme';
+import { StyleSheet, Text, View } from 'react-native';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, radii, spacing, typography } from '../../theme';
 
 const handoffItems = [
   'Attach screening report PDF.',
@@ -15,7 +15,7 @@ const handoffItems = [
 ];
 
 export const ClinicianReviewScreen = () => {
-  const {state, actions} = useHphVisionApp();
+  const { state, actions } = useHphVisionApp();
 
   return (
     <Screen

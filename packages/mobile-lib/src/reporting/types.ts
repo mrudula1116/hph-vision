@@ -1,13 +1,13 @@
-import type {AcuityResult} from '../acuity';
-import type {DeviceProfile} from '../device-profile';
-import type {RefractionResult} from '../refraction';
-import type {ReliabilityResult} from '../reliability';
+import type { AcuityResult } from '../acuity';
+import type { DeviceProfile } from '../device-profile';
+import type { RefractionResult } from '../refraction';
+import type { ReliabilityResult } from '../reliability';
 import type {
   DomainWarning,
   ISODateString,
   ResultRecommendation,
 } from '../types';
-import type {TemplateMetadata} from '../template-generator';
+import type { TemplateMetadata } from '../template-generator';
 
 export type ReportWarning = DomainWarning;
 

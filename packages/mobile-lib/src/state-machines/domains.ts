@@ -1,7 +1,7 @@
 // implementation of required machine domains: onboarding, template, acuity, refraction, report
 // all comments are lowercase to follow workspace guidelines
 
-import type {StateMachineConfig} from './types';
+import type { StateMachineConfig } from './types';
 
 // --- onboardingFlow ---
 
@@ -13,10 +13,10 @@ export interface OnboardingContext {
 }
 
 export type OnboardingEvent =
-  | {type: 'START'}
-  | {type: 'ACCEPT_DISCLAIMER'}
-  | {type: 'TRIAGE_COMPLETE'; canContinue: boolean}
-  | {type: 'RESET'};
+  | { type: 'START' }
+  | { type: 'ACCEPT_DISCLAIMER' }
+  | { type: 'TRIAGE_COMPLETE'; canContinue: boolean }
+  | { type: 'RESET' };
 
 export const onboardingFlowConfig: StateMachineConfig<
   OnboardingState,
@@ -25,7 +25,7 @@ export const onboardingFlowConfig: StateMachineConfig<
 > = {
   id: 'onboardingFlow',
   initialState: 'idle',
-  initialContext: {disclaimerAccepted: false, canContinue: false},
+  initialContext: { disclaimerAccepted: false, canContinue: false },
   states: {
     idle: {
       on: {
@@ -36,7 +36,7 @@ export const onboardingFlowConfig: StateMachineConfig<
       on: {
         ACCEPT_DISCLAIMER: {
           target: 'triage',
-          action: ctx => ({...ctx, disclaimerAccepted: true}),
+          action: ctx => ({ ...ctx, disclaimerAccepted: true }),
         },
         RESET: 'idle',
       },
@@ -46,7 +46,7 @@ export const onboardingFlowConfig: StateMachineConfig<
         TRIAGE_COMPLETE: {
           target: 'complete',
           guard: (_ctx, evt) => evt.canContinue,
-          action: (ctx, evt) => ({...ctx, canContinue: evt.canContinue}),
+          action: (ctx, evt) => ({ ...ctx, canContinue: evt.canContinue }),
         },
         RESET: 'idle',
       },
@@ -62,11 +62,7 @@ export const onboardingFlowConfig: StateMachineConfig<
 // --- templateFlow ---
 
 export type TemplateState =
-  | 'idle'
-  | 'calibrating'
-  | 'generating'
-  | 'ready'
-  | 'error';
+  'idle' | 'calibrating' | 'generating' | 'ready' | 'error';
 
 export interface TemplateContext {
   calibrationScale: number;
@@ -74,12 +70,12 @@ export interface TemplateContext {
 }
 
 export type TemplateEvent =
-  | {type: 'START_CALIBRATION'}
-  | {type: 'CALIBRATE'; scale: number}
-  | {type: 'GENERATE_TEMPLATE'}
-  | {type: 'TEMPLATE_READY'}
-  | {type: 'FAIL'; error: string}
-  | {type: 'RESET'};
+  | { type: 'START_CALIBRATION' }
+  | { type: 'CALIBRATE'; scale: number }
+  | { type: 'GENERATE_TEMPLATE' }
+  | { type: 'TEMPLATE_READY' }
+  | { type: 'FAIL'; error: string }
+  | { type: 'RESET' };
 
 export const templateFlowConfig: StateMachineConfig<
   TemplateState,
@@ -88,7 +84,7 @@ export const templateFlowConfig: StateMachineConfig<
 > = {
   id: 'templateFlow',
   initialState: 'idle',
-  initialContext: {calibrationScale: 1.0},
+  initialContext: { calibrationScale: 1.0 },
   states: {
     idle: {
       on: {
@@ -99,7 +95,7 @@ export const templateFlowConfig: StateMachineConfig<
       on: {
         CALIBRATE: {
           target: 'generating',
-          action: (ctx, evt) => ({...ctx, calibrationScale: evt.scale}),
+          action: (ctx, evt) => ({ ...ctx, calibrationScale: evt.scale }),
         },
         RESET: 'idle',
       },
@@ -109,7 +105,7 @@ export const templateFlowConfig: StateMachineConfig<
         TEMPLATE_READY: 'ready',
         FAIL: {
           target: 'error',
-          action: (ctx, evt) => ({...ctx, error: evt.error}),
+          action: (ctx, evt) => ({ ...ctx, error: evt.error }),
         },
         RESET: 'idle',
       },
@@ -130,10 +126,7 @@ export const templateFlowConfig: StateMachineConfig<
 // --- acuityFlow ---
 
 export type AcuityState =
-  | 'idle'
-  | 'testing_right'
-  | 'testing_left'
-  | 'complete';
+  'idle' | 'testing_right' | 'testing_left' | 'complete';
 
 export interface AcuityContext {
   rightEyeScore: number;
@@ -141,11 +134,11 @@ export interface AcuityContext {
 }
 
 export type AcuityEvent =
-  | {type: 'START'}
-  | {type: 'RECORD_RIGHT'; score: number}
-  | {type: 'RECORD_LEFT'; score: number}
-  | {type: 'FINISH'}
-  | {type: 'RESET'};
+  | { type: 'START' }
+  | { type: 'RECORD_RIGHT'; score: number }
+  | { type: 'RECORD_LEFT'; score: number }
+  | { type: 'FINISH' }
+  | { type: 'RESET' };
 
 export const acuityFlowConfig: StateMachineConfig<
   AcuityState,
@@ -154,7 +147,7 @@ export const acuityFlowConfig: StateMachineConfig<
 > = {
   id: 'acuityFlow',
   initialState: 'idle',
-  initialContext: {rightEyeScore: 0.0, leftEyeScore: 0.0},
+  initialContext: { rightEyeScore: 0.0, leftEyeScore: 0.0 },
   states: {
     idle: {
       on: {
@@ -165,7 +158,7 @@ export const acuityFlowConfig: StateMachineConfig<
       on: {
         RECORD_RIGHT: {
           target: 'testing_left',
-          action: (ctx, evt) => ({...ctx, rightEyeScore: evt.score}),
+          action: (ctx, evt) => ({ ...ctx, rightEyeScore: evt.score }),
         },
         RESET: 'idle',
       },
@@ -174,7 +167,7 @@ export const acuityFlowConfig: StateMachineConfig<
       on: {
         RECORD_LEFT: {
           target: 'complete',
-          action: (ctx, evt) => ({...ctx, leftEyeScore: evt.score}),
+          action: (ctx, evt) => ({ ...ctx, leftEyeScore: evt.score }),
         },
         RESET: 'idle',
       },
@@ -197,9 +190,9 @@ export interface RefractionContext {
 }
 
 export type RefractionEvent =
-  | {type: 'START'}
-  | {type: 'RECORD_ESTIMATES'; sphere: number; cylinder: number}
-  | {type: 'RESET'};
+  | { type: 'START' }
+  | { type: 'RECORD_ESTIMATES'; sphere: number; cylinder: number }
+  | { type: 'RESET' };
 
 export const refractionFlowConfig: StateMachineConfig<
   RefractionState,
@@ -208,7 +201,7 @@ export const refractionFlowConfig: StateMachineConfig<
 > = {
   id: 'refractionFlow',
   initialState: 'idle',
-  initialContext: {sphereEstimate: 0.0, cylinderEstimate: 0.0},
+  initialContext: { sphereEstimate: 0.0, cylinderEstimate: 0.0 },
   states: {
     idle: {
       on: {
@@ -246,9 +239,9 @@ export interface ReportContext {
 }
 
 export type ReportEvent =
-  | {type: 'GENERATE'; reportId: string}
-  | {type: 'SHARE'; recipient: string}
-  | {type: 'RESET'};
+  | { type: 'GENERATE'; reportId: string }
+  | { type: 'SHARE'; recipient: string }
+  | { type: 'RESET' };
 
 export const reportFlowConfig: StateMachineConfig<
   ReportState,
@@ -257,13 +250,13 @@ export const reportFlowConfig: StateMachineConfig<
 > = {
   id: 'reportFlow',
   initialState: 'idle',
-  initialContext: {recipients: []},
+  initialContext: { recipients: [] },
   states: {
     idle: {
       on: {
         GENERATE: {
           target: 'generating',
-          action: (ctx, evt) => ({...ctx, reportId: evt.reportId}),
+          action: (ctx, evt) => ({ ...ctx, reportId: evt.reportId }),
         },
       },
     },

@@ -1,4 +1,4 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import {
   createRefractionFlow,
   transitionRefractionFlow,
@@ -30,7 +30,7 @@ const runEyeTrials = (
         type: 'PRESENT_OPTION_TWO',
       });
     } else if (context.state === 'show_option_two') {
-      context = transitionRefractionFlow(context, {type: 'ASK_QUESTION'});
+      context = transitionRefractionFlow(context, { type: 'ASK_QUESTION' });
     } else if (context.state === 'ask_better_worse_same') {
       context = transitionRefractionFlow(context, {
         type: 'SUBMIT_RESPONSE',
@@ -54,23 +54,23 @@ const runEyeTrials = (
 
 describe('refraction flow state machine', () => {
   it('runs complete flow for both eyes through normal convergence', () => {
-    let context = createRefractionFlow({eyeMode: 'both'});
+    let context = createRefractionFlow({ eyeMode: 'both' });
     expect(context.state).toBe('intro');
 
     // intro -> select eye
-    context = transitionRefractionFlow(context, {type: 'START'});
+    context = transitionRefractionFlow(context, { type: 'START' });
     expect(context.state).toBe('select_eye');
 
     // select right eye first
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'both'},
+      payload: { eye: 'right', targetMode: 'both' },
     });
     expect(context.state).toBe('baseline_check');
     expect(context.activeEye).toBe('right');
 
     // baseline -> show option one
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
     expect(context.state).toBe('show_option_one');
     expect(context.currentTrial).toBeDefined();
 
@@ -79,12 +79,12 @@ describe('refraction flow state machine', () => {
     expect(context.state).toBe('switch_eye');
 
     // switch to left eye
-    context = transitionRefractionFlow(context, {type: 'SWITCH_EYE'});
+    context = transitionRefractionFlow(context, { type: 'SWITCH_EYE' });
     expect(context.state).toBe('baseline_check');
     expect(context.activeEye).toBe('left');
 
     // baseline -> show option one for left eye
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // answer all left eye trials
     context = runEyeTrials(context, 'option 1', 'voice', 0.9);
@@ -97,13 +97,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('triggers early convergence when the patient keeps saying same', () => {
-    let context = createRefractionFlow({eyeMode: 'left'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'left' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'left', targetMode: 'single'},
+      payload: { eye: 'left', targetMode: 'single' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // two consecutive "same" answers should trigger convergence
     for (let i = 0; i < 2; i += 1) {
@@ -116,7 +116,9 @@ describe('refraction flow state machine', () => {
           confidence: 0.85,
         },
       });
-      context = transitionRefractionFlow(context, {type: 'CHECK_CONVERGENCE'});
+      context = transitionRefractionFlow(context, {
+        type: 'CHECK_CONVERGENCE',
+      });
     }
 
     expect(context.state).toBe('complete');
@@ -125,13 +127,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('tracks contradictory responses and sets the warning', () => {
-    let context = createRefractionFlow({eyeMode: 'right'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'single'},
+      payload: { eye: 'right', targetMode: 'single' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // alternating contradictory answers: better, worse, better, worse
     const answers = ['better', 'worse', 'better', 'worse'];
@@ -146,7 +148,9 @@ describe('refraction flow state machine', () => {
           inputMethod: 'touch',
         },
       });
-      context = transitionRefractionFlow(context, {type: 'CHECK_CONVERGENCE'});
+      context = transitionRefractionFlow(context, {
+        type: 'CHECK_CONVERGENCE',
+      });
     }
 
     expect(context.contradictionCount).toBeGreaterThanOrEqual(2);
@@ -156,13 +160,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('returns reliability warnings for unknown, low-confidence responses', () => {
-    let context = createRefractionFlow({eyeMode: 'right', maxTrials: 1});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right', maxTrials: 1 });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right'},
+      payload: { eye: 'right' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     context = runEyeTrials(context, "I don't know", 'voice', 0.4);
 
@@ -177,26 +181,26 @@ describe('refraction flow state machine', () => {
   });
 
   it('handles abort and produces the right warning', () => {
-    let context = createRefractionFlow({eyeMode: 'both'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'both' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right'},
+      payload: { eye: 'right' },
     });
 
-    context = transitionRefractionFlow(context, {type: 'ABORT'});
+    context = transitionRefractionFlow(context, { type: 'ABORT' });
     expect(context.state).toBe('aborted');
     expect(context.result?.reliabilityWarnings).toContain('aborted_session');
   });
 
   it('serializes and restores flow context round-trip', () => {
-    let context = createRefractionFlow({eyeMode: 'both'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'both' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'left', targetMode: 'both'},
+      payload: { eye: 'left', targetMode: 'both' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
     context = transitionRefractionFlow(context, {
       type: 'SUBMIT_RESPONSE',
       payload: {
@@ -215,20 +219,20 @@ describe('refraction flow state machine', () => {
   });
 
   it('warns about one_eye_only_completed when both-eye flow finishes just one eye', () => {
-    let context = createRefractionFlow({eyeMode: 'both'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'both' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'both'},
+      payload: { eye: 'right', targetMode: 'both' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // complete right eye trials
     context = runEyeTrials(context, 'better');
     expect(context.state).toBe('switch_eye');
 
     // instead of switching, abort the flow
-    context = transitionRefractionFlow(context, {type: 'ABORT'});
+    context = transitionRefractionFlow(context, { type: 'ABORT' });
 
     expect(context.state).toBe('aborted');
     expect(context.result?.reliabilityWarnings).toContain(
@@ -251,10 +255,10 @@ describe('refraction flow state machine', () => {
     expect(context.initialSphere).toBe(-2.5);
     expect(context.maxTrials).toBe(4);
 
-    context = transitionRefractionFlow(context, {type: 'START'});
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'single'},
+      payload: { eye: 'right', targetMode: 'single' },
     });
 
     expect(context.rightEyeSession).toBeDefined();
@@ -263,13 +267,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('completes a configured one-eye flow without a SELECT_EYE target mode', () => {
-    let context = createRefractionFlow({eyeMode: 'right', maxTrials: 1});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right', maxTrials: 1 });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right'},
+      payload: { eye: 'right' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     context = runEyeTrials(context, 'better');
 
@@ -285,30 +289,30 @@ describe('refraction flow state machine', () => {
       initialSphere: 1.0,
       maxTrials: 3,
     });
-    context = transitionRefractionFlow(context, {type: 'START'});
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'both'},
+      payload: { eye: 'right', targetMode: 'both' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // run through right eye
     context = runEyeTrials(context, 'better');
     expect(context.state).toBe('switch_eye');
 
     // switch to left eye
-    context = transitionRefractionFlow(context, {type: 'SWITCH_EYE'});
+    context = transitionRefractionFlow(context, { type: 'SWITCH_EYE' });
     expect(context.leftEyeSession).toBeDefined();
     expect(context.leftEyeSession?.initialSphere).toBe(1.0);
     expect(context.leftEyeSession?.trials.length).toBe(3);
   });
 
   it('accepts PRESENT_OPTION_ONE from baseline_check', () => {
-    let context = createRefractionFlow({eyeMode: 'right'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'single'},
+      payload: { eye: 'right', targetMode: 'single' },
     });
     expect(context.state).toBe('baseline_check');
 
@@ -327,7 +331,7 @@ describe('refraction flow state machine', () => {
   it('throws on unsupported version when restoring', () => {
     const bad = JSON.stringify({
       version: 'refraction-flow-v99',
-      context: {state: 'intro'},
+      context: { state: 'intro' },
       serializedAt: new Date().toISOString(),
     });
     expect(() => restoreRefractionFlowState(bad)).toThrow(
@@ -353,13 +357,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('continues predictably from a restored flow state', () => {
-    let context = createRefractionFlow({eyeMode: 'right', maxTrials: 2});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right', maxTrials: 2 });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right'},
+      payload: { eye: 'right' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     const restored = restoreRefractionFlowState(
       serializeRefractionFlowState(context),
@@ -374,13 +378,13 @@ describe('refraction flow state machine', () => {
   });
 
   it('marks active session as not completed on abort', () => {
-    let context = createRefractionFlow({eyeMode: 'right'});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right' });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'single'},
+      payload: { eye: 'right', targetMode: 'single' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     // answer one trial then abort
     context = transitionRefractionFlow(context, {
@@ -390,28 +394,28 @@ describe('refraction flow state machine', () => {
         inputMethod: 'touch',
       },
     });
-    context = transitionRefractionFlow(context, {type: 'ABORT'});
+    context = transitionRefractionFlow(context, { type: 'ABORT' });
 
     expect(context.state).toBe('aborted');
     expect(context.rightEyeSession?.completed).toBe(false);
   });
 
   it('ignores abort events after the flow is complete', () => {
-    let context = createRefractionFlow({eyeMode: 'right', maxTrials: 1});
-    context = transitionRefractionFlow(context, {type: 'START'});
+    let context = createRefractionFlow({ eyeMode: 'right', maxTrials: 1 });
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right'},
+      payload: { eye: 'right' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
     context = transitionRefractionFlow(context, {
       type: 'SUBMIT_RESPONSE',
-      payload: {answer: 'better', inputMethod: 'touch'},
+      payload: { answer: 'better', inputMethod: 'touch' },
     });
-    context = transitionRefractionFlow(context, {type: 'CHECK_CONVERGENCE'});
+    context = transitionRefractionFlow(context, { type: 'CHECK_CONVERGENCE' });
 
     expect(context.state).toBe('complete');
-    expect(transitionRefractionFlow(context, {type: 'ABORT'})).toBe(context);
+    expect(transitionRefractionFlow(context, { type: 'ABORT' })).toBe(context);
   });
 
   it('uses the optional clock for deterministic timestamps', () => {
@@ -420,12 +424,12 @@ describe('refraction flow state machine', () => {
       eyeMode: 'right',
       now: () => fixedTime,
     });
-    context = transitionRefractionFlow(context, {type: 'START'});
+    context = transitionRefractionFlow(context, { type: 'START' });
     context = transitionRefractionFlow(context, {
       type: 'SELECT_EYE',
-      payload: {eye: 'right', targetMode: 'single'},
+      payload: { eye: 'right', targetMode: 'single' },
     });
-    context = transitionRefractionFlow(context, {type: 'PROCEED'});
+    context = transitionRefractionFlow(context, { type: 'PROCEED' });
 
     context = transitionRefractionFlow(context, {
       type: 'SUBMIT_RESPONSE',
@@ -452,7 +456,7 @@ describe('combineRefractionResults', () => {
 
   it('deduplicates warnings when combining results', () => {
     const resultA = {
-      rightEye: {sphere: -1.0},
+      rightEye: { sphere: -1.0 },
       confidence: 0.8,
       recommendation: 'clinician_review_recommended' as const,
       reliabilityWarnings: [
@@ -461,7 +465,7 @@ describe('combineRefractionResults', () => {
       ],
     };
     const resultB = {
-      leftEye: {sphere: -0.5},
+      leftEye: { sphere: -0.5 },
       confidence: 0.7,
       recommendation: 'clinician_review_recommended' as const,
       reliabilityWarnings: ['low_voice_confidence', 'many_same_answers'],
@@ -482,13 +486,13 @@ describe('combineRefractionResults', () => {
   it('averages confidence across combined results', () => {
     const results = [
       {
-        rightEye: {sphere: 0},
+        rightEye: { sphere: 0 },
         confidence: 0.9,
         recommendation: 'clinician_review_recommended' as const,
         reliabilityWarnings: [],
       },
       {
-        leftEye: {sphere: 0},
+        leftEye: { sphere: 0 },
         confidence: 0.5,
         recommendation: 'clinician_review_recommended' as const,
         reliabilityWarnings: [],
@@ -502,7 +506,7 @@ describe('combineRefractionResults', () => {
   it('recommends repeat_test when confidence is very low', () => {
     const results = [
       {
-        rightEye: {sphere: 0},
+        rightEye: { sphere: 0 },
         confidence: 0.2,
         recommendation: 'repeat_test' as const,
         reliabilityWarnings: [],

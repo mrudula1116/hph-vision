@@ -1,19 +1,19 @@
-import React, {useMemo, useState} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import {
   getDeviceProfiles,
   toPhoneGeometry,
   validateDeviceProfile,
   type DeviceProfile,
 } from '@hiperhealth/hphvision-lib';
-import {getDeviceDetectionInput} from '../../integrations/device-info/getDeviceDetectionInput';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {FieldLabel} from '../../components/forms/FieldLabel';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, radii, spacing, typography} from '../../theme';
-import {formatMillimeters} from '../../utils/format';
+import { getDeviceDetectionInput } from '../../integrations/device-info/getDeviceDetectionInput';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { FieldLabel } from '../../components/forms/FieldLabel';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, radii, spacing, typography } from '../../theme';
+import { formatMillimeters } from '../../utils/format';
 
 const deviceProfiles = getDeviceProfiles();
 const defaultProfile: DeviceProfile = deviceProfiles[1] ??
@@ -36,7 +36,7 @@ const parseDimension = (value: string): number =>
   Number.parseFloat(value.replace(',', '.'));
 
 export const DeviceCalibrationScreen = () => {
-  const {state, actions} = useHphVisionApp();
+  const { state, actions } = useHphVisionApp();
   const initialProfile = state.deviceProfile ?? defaultProfile;
   const [modelName, setModelName] = useState(initialProfile.modelName);
   const [bodyWidthMm, setBodyWidthMm] = useState(

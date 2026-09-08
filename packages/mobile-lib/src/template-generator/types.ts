@@ -1,4 +1,4 @@
-import type {PhoneGeometry} from '../device-profile';
+import type { PhoneGeometry } from '../device-profile';
 
 export type PageSize = 'A4' | 'LETTER';
 
@@ -9,16 +9,10 @@ export type TemplateOptions = {
   includeAssemblyInstructions: boolean;
 };
 
-export type Point = {xMm: number; yMm: number};
+export type Point = { xMm: number; yMm: number };
 
 export type TemplateElementRole =
-  | 'cut'
-  | 'fold'
-  | 'guide'
-  | 'calibration'
-  | 'label'
-  | 'slot'
-  | 'glue';
+  'cut' | 'fold' | 'guide' | 'calibration' | 'label' | 'slot' | 'glue';
 
 export type LinePath = {
   kind: 'line';
@@ -65,11 +59,7 @@ export type GeneralPath = {
 };
 
 export type TemplateElement =
-  | LinePath
-  | RectPath
-  | TextElement
-  | RoundedRectPath
-  | GeneralPath;
+  LinePath | RectPath | TextElement | RoundedRectPath | GeneralPath;
 
 export type TemplatePage = {
   id: string;

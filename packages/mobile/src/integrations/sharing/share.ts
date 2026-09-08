@@ -1,4 +1,4 @@
-import type {GeneratedFile} from '../filesystem/reportFiles';
+import type { GeneratedFile } from '../filesystem/reportFiles';
 
 export type ShareResult = {
   completed: boolean;

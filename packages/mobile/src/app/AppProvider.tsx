@@ -1,1 +1,1 @@
-export {HphVisionAppProvider as AppProvider} from '../state/sessionStore';
+export { HphVisionAppProvider as AppProvider } from '../state/sessionStore';

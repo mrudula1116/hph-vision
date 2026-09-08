@@ -1,6 +1,6 @@
-﻿import {createEmptyTestSession} from '../session';
-import {fixtureAcuityResult} from './acuitySessions';
-import {fixtureRefractionResult} from './refractionSessions';
+﻿import { createEmptyTestSession } from '../session';
+import { fixtureAcuityResult } from './acuitySessions';
+import { fixtureRefractionResult } from './refractionSessions';
 
 // minimal session containing only onboarding and triage data — no test results
 export const fixtureSessionOnboardingOnly = createEmptyTestSession(
@@ -11,8 +11,8 @@ export const fixtureSessionOnboardingOnly = createEmptyTestSession(
 // session with acuity result only
 export const fixtureSessionAcuityOnly = {
   ...createEmptyTestSession('fixture-session-acuity', '2026-05-12T00:00:00Z'),
-  patientContext: {ageRange: '30-39', currentGlasses: false},
-  environment: {screenBrightness: 1.0, distanceConfidence: 0.95},
+  patientContext: { ageRange: '30-39', currentGlasses: false },
+  environment: { screenBrightness: 1.0, distanceConfidence: 0.95 },
   acuityResults: [fixtureAcuityResult],
   reliabilityScore: 0.88,
 };
@@ -23,8 +23,8 @@ export const fixtureSessionRefractionOnly = {
     'fixture-session-refraction',
     '2026-05-12T00:00:00Z',
   ),
-  patientContext: {currentGlasses: true, previousPrescription: true},
-  environment: {screenBrightness: 1.0, distanceConfidence: 0.9},
+  patientContext: { currentGlasses: true, previousPrescription: true },
+  environment: { screenBrightness: 1.0, distanceConfidence: 0.9 },
   refractionResult: fixtureRefractionResult,
   reliabilityScore: 0.72,
 };

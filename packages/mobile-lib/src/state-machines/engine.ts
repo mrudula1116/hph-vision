@@ -31,7 +31,7 @@ export function transition<
   state: TState,
   context: TContext,
   event: TEvent,
-): {state: TState; context: TContext} {
+): { state: TState; context: TContext } {
   const stateConfig = config.states[state];
   if (!stateConfig) {
     throw new InvalidTransitionError(
@@ -74,7 +74,7 @@ export function transition<
   }
 
   const nextContext = action ? action(context, event) : context;
-  return {state: target, context: nextContext};
+  return { state: target, context: nextContext };
 }
 
 // replay helper to apply multiple events sequentially and generate a snapshot
@@ -99,7 +99,7 @@ export function replay<
     state = result.state;
     context = result.context;
 
-    eventLog.push({event, timestamp});
+    eventLog.push({ event, timestamp });
   }
 
   return {
@@ -148,7 +148,7 @@ export class StateMachineInstance<
     const result = transition(this.config, this._state, this._context, event);
     this._state = result.state;
     this._context = result.context;
-    this._eventLog.push({event, timestamp: time});
+    this._eventLog.push({ event, timestamp: time });
     return this;
   }
 

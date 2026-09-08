@@ -1,6 +1,6 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 
-import {evaluateTriage, getTriageQuestions} from '..';
+import { evaluateTriage, getTriageQuestions } from '..';
 
 const createAnswers = (positiveIds: readonly string[]) =>
   getTriageQuestions().map(question => ({

@@ -142,8 +142,9 @@ jobs:
       - name: Run style checks
         if: success() || failure()
         run: |
-          pre-commit install
-          makim all.lint
+          pnpm lint
+          pnpm typecheck
+          pnpm format:check
 
       - name: Setup tmate session
         if: "${{ failure() && (contains(github.event.pull_request.labels.*.name, 'ci:enable-debugging')) }}"

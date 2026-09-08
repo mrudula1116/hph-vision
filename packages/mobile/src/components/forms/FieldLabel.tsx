@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
-import {colors, spacing, typography} from '../../theme';
+import { StyleSheet, Text } from 'react-native';
+import { colors, spacing, typography } from '../../theme';
 
-export const FieldLabel = ({children}: {children: React.ReactNode}) => (
+export const FieldLabel = ({ children }: { children: React.ReactNode }) => (
   <Text style={styles.label}>{children}</Text>
 );
 

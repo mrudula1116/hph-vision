@@ -1,5 +1,5 @@
-import type {ResultRecommendation} from '../types';
-import type {RecommendationInput} from './types';
+import type { ResultRecommendation } from '../types';
+import type { RecommendationInput } from './types';
 
 export const determineRecommendation = (
   input: RecommendationInput,

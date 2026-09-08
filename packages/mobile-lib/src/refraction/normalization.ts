@@ -1,4 +1,4 @@
-import type {RefractionAnswerToken} from './types';
+import type { RefractionAnswerToken } from './types';
 
 const SYNONYM_MAP: Record<string, RefractionAnswerToken> = {
   // Better

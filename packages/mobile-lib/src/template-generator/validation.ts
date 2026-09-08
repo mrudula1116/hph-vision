@@ -1,4 +1,4 @@
-import type {PhoneGeometry} from '../device-profile';
+import type { PhoneGeometry } from '../device-profile';
 import {
   combineValidationResults,
   invalid,
@@ -7,7 +7,7 @@ import {
   validationIssue,
   type ValidationResult,
 } from '../validation';
-import type {TemplateOptions} from './types';
+import type { TemplateOptions } from './types';
 
 export const validateTemplateOptions = (
   options: TemplateOptions,

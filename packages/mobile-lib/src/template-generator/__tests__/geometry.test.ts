@@ -1,4 +1,4 @@
-import {describe, expect, it} from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 
 import {
   fixtureTemplateInput,
@@ -6,17 +6,17 @@ import {
   fixtureLargeTemplateInput,
   fixtureLargeUSLetterTemplateInput,
 } from '../../fixtures';
-import {generateTemplateDocument} from '..';
+import { generateTemplateDocument } from '..';
 
 describe('generateTemplateDocument', () => {
   const testCases = [
-    {name: 'small phone', input: fixtureSmallTemplateInput},
-    {name: 'medium phone', input: fixtureTemplateInput},
-    {name: 'large phone', input: fixtureLargeTemplateInput},
-    {name: 'large phone US Letter', input: fixtureLargeUSLetterTemplateInput},
+    { name: 'small phone', input: fixtureSmallTemplateInput },
+    { name: 'medium phone', input: fixtureTemplateInput },
+    { name: 'large phone', input: fixtureLargeTemplateInput },
+    { name: 'large phone US Letter', input: fixtureLargeUSLetterTemplateInput },
   ];
 
-  testCases.forEach(({name, input}) => {
+  testCases.forEach(({ name, input }) => {
     it(`creates a valid template document for ${name}`, () => {
       const result = generateTemplateDocument(input.phone, input.options);
 

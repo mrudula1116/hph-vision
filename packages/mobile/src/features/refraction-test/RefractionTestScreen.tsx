@@ -1,5 +1,5 @@
-import React, {useMemo} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import React, { useMemo } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   createRefractionSession,
   nextRefractionTrial,
@@ -8,12 +8,12 @@ import {
   type BetterWorseSame,
   type OneTwoChoice,
 } from '@hiperhealth/hphvision-lib';
-import {InfoCard} from '../../components/feedback/InfoCard';
-import {PrimaryButton} from '../../components/forms/PrimaryButton';
-import {Screen} from '../../components/layout/Screen';
-import {useHphVisionApp} from '../../state/sessionStore';
-import {colors, radii, spacing, typography} from '../../theme';
-import {formatDiopter, formatPercent} from '../../utils/format';
+import { InfoCard } from '../../components/feedback/InfoCard';
+import { PrimaryButton } from '../../components/forms/PrimaryButton';
+import { Screen } from '../../components/layout/Screen';
+import { useHphVisionApp } from '../../state/sessionStore';
+import { colors, radii, spacing, typography } from '../../theme';
+import { formatDiopter, formatPercent } from '../../utils/format';
 
 const sphericalAnswers: BetterWorseSame[] = [
   'better',
@@ -24,7 +24,7 @@ const sphericalAnswers: BetterWorseSame[] = [
 const comparisonAnswers: OneTwoChoice[] = ['one', 'two', 'same', 'unknown'];
 
 export const RefractionTestScreen = () => {
-  const {state, actions} = useHphVisionApp();
+  const { state, actions } = useHphVisionApp();
   const session = state.refractionSession;
   const currentTrial = useMemo(
     () => (session ? nextRefractionTrial(session) : undefined),

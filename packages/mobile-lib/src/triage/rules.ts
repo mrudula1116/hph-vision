@@ -1,5 +1,5 @@
-import {TRIAGE_QUESTIONS} from './questions';
-import type {TriageAnswer, TriageResult} from './types';
+import { TRIAGE_QUESTIONS } from './questions';
+import type { TriageAnswer, TriageResult } from './types';
 
 export const evaluateTriage = (answers: TriageAnswer[]): TriageResult => {
   const answerMap = new Map(
@@ -25,8 +25,8 @@ export const evaluateTriage = (answers: TriageAnswer[]): TriageResult => {
   const recommendation = canContinueSelfTest
     ? 'continue'
     : urgentQuestions.length > 0
-    ? 'urgentCare'
-    : 'seekProfessionalCare';
+      ? 'urgentCare'
+      : 'seekProfessionalCare';
 
   return {
     canContinueSelfTest,

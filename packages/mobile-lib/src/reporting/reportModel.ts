@@ -1,13 +1,13 @@
-import {SCREENING_DISCLAIMER} from '../types';
-import {calculateReliability} from '../reliability';
-import type {TestSession} from '../session';
-import {determineRecommendation} from './recommendations';
-import {dedupeWarnings} from './warnings';
-import type {ScreeningReport} from './types';
+import { SCREENING_DISCLAIMER } from '../types';
+import { calculateReliability } from '../reliability';
+import type { TestSession } from '../session';
+import { determineRecommendation } from './recommendations';
+import { dedupeWarnings } from './warnings';
+import type { ScreeningReport } from './types';
 
 export const createScreeningReport = (
   session: TestSession,
-  options?: {id?: string; createdAt?: string},
+  options?: { id?: string; createdAt?: string },
 ): ScreeningReport => {
   const fallbackReliability = calculateReliability({
     completionRate:
