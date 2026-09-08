@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, {useMemo} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {
   createAcuitySession,
   nextAcuityTrial,
@@ -7,12 +7,12 @@ import {
   scoreAcuitySession,
   type OptotypeOrientation,
 } from '@hiperhealth/hphvision-lib';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
-import { formatPercent } from '../../utils/format';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
+import {formatPercent} from '../../utils/format';
 
 const answerOptions: Array<OptotypeOrientation | 'unknown'> = [
   'up',
@@ -30,7 +30,7 @@ const rotationByOrientation: Record<OptotypeOrientation, string> = {
 };
 
 export const AcuityTestScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const session = state.acuitySession;
   const currentTrial = useMemo(
     () => (session ? nextAcuityTrial(session) : undefined),
@@ -131,7 +131,7 @@ export const AcuityTestScreen = () => {
             styles.optotype,
             {
               transform: [
-                { rotate: rotationByOrientation[currentTrial.orientation] },
+                {rotate: rotationByOrientation[currentTrial.orientation]},
               ],
             },
           ]}>

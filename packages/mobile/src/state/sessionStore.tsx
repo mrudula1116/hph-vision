@@ -18,7 +18,7 @@ import type {
   TriageAnswer,
   TriageResult,
 } from '@hiperhealth/hphvision-lib';
-import type { AppRoute } from '../app/routes';
+import type {AppRoute} from '../app/routes';
 
 export type OnboardingAnswers = {
   ageRange?: string;
@@ -126,7 +126,7 @@ export const HphVisionAppProvider = ({
       const route =
         previous.routeHistory[previous.routeHistory.length - 1] ??
         previous.route;
-      return { ...previous, route, routeHistory };
+      return {...previous, route, routeHistory};
     });
   }, []);
 
@@ -135,11 +135,11 @@ export const HphVisionAppProvider = ({
   }, []);
 
   const acceptConsent = useCallback(() => {
-    setState(previous => ({ ...previous, consentAccepted: true }));
+    setState(previous => ({...previous, consentAccepted: true}));
   }, []);
 
   const saveOnboarding = useCallback((answers: OnboardingAnswers) => {
-    setState(previous => ({ ...previous, onboarding: answers }));
+    setState(previous => ({...previous, onboarding: answers}));
   }, []);
 
   const saveTriage = useCallback(
@@ -165,28 +165,28 @@ export const HphVisionAppProvider = ({
   );
 
   const saveTemplateDocument = useCallback((document: TemplateDocument) => {
-    setState(previous => ({ ...previous, templateDocument: document }));
+    setState(previous => ({...previous, templateDocument: document}));
   }, []);
 
   const saveAcuitySession = useCallback((session: AcuitySession) => {
-    setState(previous => ({ ...previous, acuitySession: session }));
+    setState(previous => ({...previous, acuitySession: session}));
   }, []);
 
   const saveAcuityResult = useCallback((result: AcuityResult) => {
-    setState(previous => ({ ...previous, acuityResult: result }));
+    setState(previous => ({...previous, acuityResult: result}));
   }, []);
 
   const saveRefractionSession = useCallback((session: RefractionSession) => {
-    setState(previous => ({ ...previous, refractionSession: session }));
+    setState(previous => ({...previous, refractionSession: session}));
   }, []);
 
   const saveRefractionResult = useCallback((result: RefractionResult) => {
-    setState(previous => ({ ...previous, refractionResult: result }));
+    setState(previous => ({...previous, refractionResult: result}));
   }, []);
 
   const saveResults = useCallback(
     (reliability: ReliabilityResult, report: ScreeningReport) => {
-      setState(previous => ({ ...previous, reliability, report }));
+      setState(previous => ({...previous, reliability, report}));
     },
     [],
   );
@@ -224,7 +224,7 @@ export const HphVisionAppProvider = ({
     ],
   );
 
-  const value = useMemo(() => ({ state, actions }), [actions, state]);
+  const value = useMemo(() => ({state, actions}), [actions, state]);
 
   return (
     <HphVisionAppContext.Provider value={value}>

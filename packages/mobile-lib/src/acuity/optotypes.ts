@@ -1,4 +1,4 @@
-import type { OptotypeOrientation } from './types';
+import type {OptotypeOrientation} from './types';
 
 export const OPTOTYPE_ORIENTATIONS: OptotypeOrientation[] = [
   'up',

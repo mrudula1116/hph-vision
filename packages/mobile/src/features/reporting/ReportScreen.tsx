@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
-import { createReportPreviewFile } from '../../integrations/filesystem/reportFiles';
-import { shareGeneratedFile } from '../../integrations/sharing/share';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
-import { formatPercent } from '../../utils/format';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
+import {createReportPreviewFile} from '../../integrations/filesystem/reportFiles';
+import {shareGeneratedFile} from '../../integrations/sharing/share';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
+import {formatPercent} from '../../utils/format';
 
 export const ReportScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const [shareMessage, setShareMessage] = useState<string | undefined>();
   const report = state.report;
 

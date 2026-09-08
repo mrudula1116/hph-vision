@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 import {
   createEmptyTestSession,
   validateReliabilityScore,
@@ -97,7 +97,7 @@ describe('validateReliabilityScore', () => {
 
 describe('validateEyeRefractionEstimate', () => {
   it('accepts an estimate with no confidence intervals', () => {
-    const result = validateEyeRefractionEstimate({ sphere: -1.5 }, 'rightEye');
+    const result = validateEyeRefractionEstimate({sphere: -1.5}, 'rightEye');
     expect(result.ok).toBe(true);
   });
 
@@ -118,7 +118,7 @@ describe('validateEyeRefractionEstimate', () => {
 
   it('rejects a range where min > max', () => {
     const result = validateEyeRefractionEstimate(
-      { confidenceInterval: { sphere: [1.0, -1.0] } },
+      {confidenceInterval: {sphere: [1.0, -1.0]}},
       'rightEye',
     );
     expect(result.ok).toBe(false);
@@ -129,7 +129,7 @@ describe('validateEyeRefractionEstimate', () => {
 
   it('rejects a range that is not a two-element array', () => {
     const result = validateEyeRefractionEstimate(
-      { confidenceInterval: { sphere: [-1.0] as unknown as [number, number] } },
+      {confidenceInterval: {sphere: [-1.0] as unknown as [number, number]}},
       'rightEye',
     );
     expect(result.ok).toBe(false);
@@ -137,7 +137,7 @@ describe('validateEyeRefractionEstimate', () => {
 
   it('rejects a range with non-finite values', () => {
     const result = validateEyeRefractionEstimate(
-      { confidenceInterval: { cylinder: [-Infinity, 0] } },
+      {confidenceInterval: {cylinder: [-Infinity, 0]}},
       'leftEye',
     );
     expect(result.ok).toBe(false);
@@ -158,7 +158,7 @@ describe('validateEyeRefractionEstimate', () => {
 
   it('rejects an invalid direct sphereRange where min > max', () => {
     const result = validateEyeRefractionEstimate(
-      { sphereRange: [0.5, -0.5] },
+      {sphereRange: [0.5, -0.5]},
       'rightEye',
     );
     expect(result.ok).toBe(false);
@@ -170,7 +170,7 @@ describe('validateEyeRefractionEstimate', () => {
 
   it('rejects a non-finite value in a direct cylinderRange', () => {
     const result = validateEyeRefractionEstimate(
-      { cylinderRange: [-0.5, Infinity] },
+      {cylinderRange: [-0.5, Infinity]},
       'leftEye',
     );
     expect(result.ok).toBe(false);
@@ -183,7 +183,7 @@ describe('validateEyeRefractionEstimate', () => {
     const result = validateEyeRefractionEstimate(
       {
         sphereRange: [1.0, -1.0],
-        confidenceInterval: { sphere: [2.0, -2.0] },
+        confidenceInterval: {sphere: [2.0, -2.0]},
       },
       'rightEye',
     );
@@ -199,7 +199,7 @@ describe('validateEyeRefractionEstimate', () => {
 describe('validateRefractionResult', () => {
   it('accepts a valid refraction result with no ranges', () => {
     const result = validateRefractionResult({
-      rightEye: { sphere: -1.0 },
+      rightEye: {sphere: -1.0},
       confidence: 0.9,
       recommendation: 'clinician_review_recommended',
       reliabilityWarnings: [],
@@ -257,7 +257,7 @@ describe('validateRefractionResult', () => {
 
   it('rejects invalid ranges in the right eye estimate', () => {
     const result = validateRefractionResult({
-      rightEye: { confidenceInterval: { sphere: [1.0, -1.0] } },
+      rightEye: {confidenceInterval: {sphere: [1.0, -1.0]}},
       confidence: 0.8,
       recommendation: 'clinician_review_recommended',
       reliabilityWarnings: [],
@@ -280,7 +280,7 @@ describe('validateTestSession', () => {
   });
 
   it('rejects a session with a missing id', () => {
-    const bad = { ...fixtureSessionOnboardingOnly, id: '' };
+    const bad = {...fixtureSessionOnboardingOnly, id: ''};
     const result = validateTestSession(bad);
     expect(result.ok).toBe(false);
     if (!result.ok) {
@@ -289,7 +289,7 @@ describe('validateTestSession', () => {
   });
 
   it('rejects a session with an invalid reliability score', () => {
-    const bad = { ...fixtureSessionOnboardingOnly, reliabilityScore: 1.5 };
+    const bad = {...fixtureSessionOnboardingOnly, reliabilityScore: 1.5};
     const result = validateTestSession(bad);
     expect(result.ok).toBe(false);
     if (!result.ok) {
@@ -304,7 +304,7 @@ describe('validateTestSession', () => {
       ...fixtureSessionOnboardingOnly,
       refractionResult: {
         rightEye: {
-          confidenceInterval: { sphere: [1.0, -1.0] as [number, number] },
+          confidenceInterval: {sphere: [1.0, -1.0] as [number, number]},
         },
         confidence: 0.8,
         recommendation: 'clinician_review_recommended' as const,

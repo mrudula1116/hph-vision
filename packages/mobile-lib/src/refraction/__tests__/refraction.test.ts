@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 
 import {
   createRefractionSession,
@@ -6,8 +6,8 @@ import {
   recordRefractionResponse,
   scoreRefractionSession,
 } from '..';
-import { roundToStep } from '../../validation';
-import type { TestSession } from '../../session';
+import {roundToStep} from '../../validation';
+import type {TestSession} from '../../session';
 
 describe('refraction protocol and scoring', () => {
   it('records comparison responses and produces structured estimates with ranges', () => {
@@ -144,8 +144,8 @@ describe('refraction protocol and scoring', () => {
     const testSession: TestSession = {
       id: 'session-001',
       createdAt: '2026-05-12T00:00:00Z',
-      patientContext: { ageRange: '25-34' },
-      environment: { ambientLightLux: 300 },
+      patientContext: {ageRange: '25-34'},
+      environment: {ambientLightLux: 300},
       acuityResults: [],
       refractionResult: result,
       reliabilityScore: result.confidence,

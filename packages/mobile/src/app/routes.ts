@@ -19,26 +19,26 @@ export type RouteDescriptor = {
 };
 
 export const ROUTES: RouteDescriptor[] = [
-  { id: 'disclaimer', title: 'Clinical disclaimer', stepLabel: 'Consent' },
-  { id: 'onboarding', title: 'Onboarding', stepLabel: 'Basics' },
-  { id: 'triage', title: 'Safety triage', stepLabel: 'Safety' },
-  { id: 'deviceCalibration', title: 'Device calibration', stepLabel: 'Device' },
+  {id: 'disclaimer', title: 'Clinical disclaimer', stepLabel: 'Consent'},
+  {id: 'onboarding', title: 'Onboarding', stepLabel: 'Basics'},
+  {id: 'triage', title: 'Safety triage', stepLabel: 'Safety'},
+  {id: 'deviceCalibration', title: 'Device calibration', stepLabel: 'Device'},
   {
     id: 'templateGeneration',
     title: 'Template preview',
     stepLabel: 'Template',
   },
-  { id: 'visorAssembly', title: 'Visor assembly', stepLabel: 'Assembly' },
-  { id: 'acuityTest', title: 'Acuity prototype', stepLabel: 'Acuity' },
+  {id: 'visorAssembly', title: 'Visor assembly', stepLabel: 'Assembly'},
+  {id: 'acuityTest', title: 'Acuity prototype', stepLabel: 'Acuity'},
   {
     id: 'refractionTest',
     title: 'Refraction prototype',
     stepLabel: 'Refraction',
   },
-  { id: 'results', title: 'Result summary', stepLabel: 'Results' },
-  { id: 'reporting', title: 'Report export', stepLabel: 'Report' },
-  { id: 'clinicianReview', title: 'Clinician review', stepLabel: 'Handoff' },
-  { id: 'settings', title: 'Settings', stepLabel: 'Settings' },
+  {id: 'results', title: 'Result summary', stepLabel: 'Results'},
+  {id: 'reporting', title: 'Report export', stepLabel: 'Report'},
+  {id: 'clinicianReview', title: 'Clinician review', stepLabel: 'Handoff'},
+  {id: 'settings', title: 'Settings', stepLabel: 'Settings'},
 ];
 
 export const getRouteDescriptor = (route: AppRoute): RouteDescriptor => {

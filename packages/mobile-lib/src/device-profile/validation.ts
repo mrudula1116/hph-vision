@@ -6,7 +6,7 @@ import {
   validationIssue,
   type ValidationResult,
 } from '../validation';
-import type { DeviceProfile } from './types';
+import type {DeviceProfile} from './types';
 
 export const validateDeviceProfile = (
   profile: DeviceProfile,

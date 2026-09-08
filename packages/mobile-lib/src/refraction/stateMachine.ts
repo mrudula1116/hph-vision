@@ -1,4 +1,4 @@
-import { REFRACTION_PROTOCOL_VERSION } from './protocol';
+import {REFRACTION_PROTOCOL_VERSION} from './protocol';
 import type {
   RefractionResponse,
   RefractionSession,
@@ -57,7 +57,7 @@ const createTrial = (
     eye,
     kind: 'axisComparison',
     promptKey: 'refraction.prompt.oneOrTwo',
-    optionA: { id: 'axis-a', axisDelta, labelKey: 'refraction.option.one' },
+    optionA: {id: 'axis-a', axisDelta, labelKey: 'refraction.option.one'},
     optionB: {
       id: 'axis-b',
       axisDelta: -axisDelta,
@@ -77,7 +77,7 @@ export const createRefractionSession = (
     protocolVersion: REFRACTION_PROTOCOL_VERSION,
     eye: options.eye,
     initialSphere: options.initialSphere ?? 0,
-    trials: Array.from({ length: maxTrials }, (_, index) =>
+    trials: Array.from({length: maxTrials}, (_, index) =>
       createTrial(id, options.eye, index),
     ),
     responses: [],

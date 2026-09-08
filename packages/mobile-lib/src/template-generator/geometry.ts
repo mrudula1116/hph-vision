@@ -1,4 +1,4 @@
-import type { PhoneGeometry } from '../device-profile';
+import type {PhoneGeometry} from '../device-profile';
 import {
   validationIssue,
   combineValidationResults,
@@ -6,13 +6,13 @@ import {
   valid,
   type ValidationResult,
 } from '../validation';
-import { createTemplatePage } from './layout';
+import {createTemplatePage} from './layout';
 import type {
   AssemblyInstruction,
   TemplateDocument,
   TemplateOptions,
 } from './types';
-import { validatePhoneGeometry, validateTemplateOptions } from './validation';
+import {validatePhoneGeometry, validateTemplateOptions} from './validation';
 
 export const TEMPLATE_VERSION = 'template-v0.1';
 

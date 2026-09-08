@@ -1,4 +1,4 @@
-import type { DomainWarning } from '../types';
+import type {DomainWarning} from '../types';
 
 export type ReliabilitySignals = {
   repeatedAnswerConsistency?: number;

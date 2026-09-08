@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 
 import {
   createAcuitySession,
@@ -299,11 +299,11 @@ describe('acuity flow state machine', () => {
     );
 
     // ACK_INTRO -> practice
-    flow = transitionAcuityFlow(flow, { type: 'ACK_INTRO' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_INTRO'});
     expect(flow.state).toBe('practice');
 
     // ACK_PRACTICE -> select_eye
-    flow = transitionAcuityFlow(flow, { type: 'ACK_PRACTICE' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_PRACTICE'});
     expect(flow.state).toBe('select_eye');
 
     // SELECT_EYE -> prepare_eye_occlusion
@@ -339,11 +339,11 @@ describe('acuity flow state machine', () => {
     expect(flow.context.pendingResponse?.responseTimeMs).toBe(1500);
 
     // CONFIRM_ANSWER -> score_trial
-    flow = transitionAcuityFlow(flow, { type: 'CONFIRM_ANSWER' });
+    flow = transitionAcuityFlow(flow, {type: 'CONFIRM_ANSWER'});
     expect(flow.state).toBe('score_trial');
 
     // SCORE_TRIAL -> advance_level
-    flow = transitionAcuityFlow(flow, { type: 'SCORE_TRIAL' });
+    flow = transitionAcuityFlow(flow, {type: 'SCORE_TRIAL'});
     expect(flow.state).toBe('advance_level');
 
     // ADVANCE_LEVEL -> switch_eye
@@ -374,8 +374,8 @@ describe('acuity flow state machine', () => {
       eyes: ['right'],
       timestamp: 1773918000000,
     });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_INTRO' });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_PRACTICE' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_INTRO'});
+    flow = transitionAcuityFlow(flow, {type: 'ACK_PRACTICE'});
     expect(flow.state).toBe('select_eye');
 
     flow = transitionAcuityFlow(flow, {
@@ -401,9 +401,9 @@ describe('acuity flow state machine', () => {
       },
       timestamp: startTimestamp,
     });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_INTRO' });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_PRACTICE' });
-    flow = transitionAcuityFlow(flow, { type: 'SELECT_EYE', eye: 'right' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_INTRO'});
+    flow = transitionAcuityFlow(flow, {type: 'ACK_PRACTICE'});
+    flow = transitionAcuityFlow(flow, {type: 'SELECT_EYE', eye: 'right'});
     flow = transitionAcuityFlow(flow, {
       type: 'ACK_OCCLUSION',
       timestamp: startTimestamp + 1000,
@@ -418,8 +418,8 @@ describe('acuity flow state machine', () => {
       inputMethod: 'touch',
       timestamp: startTimestamp + 3000,
     });
-    flow = transitionAcuityFlow(flow, { type: 'CONFIRM_ANSWER' });
-    flow = transitionAcuityFlow(flow, { type: 'SCORE_TRIAL' });
+    flow = transitionAcuityFlow(flow, {type: 'CONFIRM_ANSWER'});
+    flow = transitionAcuityFlow(flow, {type: 'SCORE_TRIAL'});
 
     // ADVANCE_LEVEL -> transitions to switch_eye
     flow = transitionAcuityFlow(flow, {
@@ -430,7 +430,7 @@ describe('acuity flow state machine', () => {
     expect(flow.context.currentEyeIndex).toBe(1);
 
     // ACK_SWITCH_EYE -> transitions to prepare_eye_occlusion
-    flow = transitionAcuityFlow(flow, { type: 'ACK_SWITCH_EYE' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_SWITCH_EYE'});
     expect(flow.state).toBe('prepare_eye_occlusion');
     expect(flow.context.sessions.left).toBeDefined();
 
@@ -449,8 +449,8 @@ describe('acuity flow state machine', () => {
       inputMethod: 'touch',
       timestamp: startTimestamp + 7000,
     });
-    flow = transitionAcuityFlow(flow, { type: 'CONFIRM_ANSWER' });
-    flow = transitionAcuityFlow(flow, { type: 'SCORE_TRIAL' });
+    flow = transitionAcuityFlow(flow, {type: 'CONFIRM_ANSWER'});
+    flow = transitionAcuityFlow(flow, {type: 'SCORE_TRIAL'});
 
     // ADVANCE_LEVEL -> complete (all eyes finished)
     flow = transitionAcuityFlow(flow, {
@@ -476,8 +476,8 @@ describe('acuity flow state machine', () => {
       },
       timestamp: startTimestamp,
     });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_INTRO' });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_PRACTICE' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_INTRO'});
+    flow = transitionAcuityFlow(flow, {type: 'ACK_PRACTICE'});
 
     // SELECT_EYE with invalid eye (not in context.eyes)
     // Should be ignored and return current flow unmodified
@@ -489,7 +489,7 @@ describe('acuity flow state machine', () => {
     expect(flowInvalid.context.sessions.left).toBeUndefined();
 
     // SELECT_EYE with valid eye
-    flow = transitionAcuityFlow(flow, { type: 'SELECT_EYE', eye: 'right' });
+    flow = transitionAcuityFlow(flow, {type: 'SELECT_EYE', eye: 'right'});
     expect(flow.state).toBe('prepare_eye_occlusion');
 
     flow = transitionAcuityFlow(flow, {
@@ -511,7 +511,7 @@ describe('acuity flow state machine', () => {
     expect(flow.state).toBe('confirm_response');
 
     // Reject answer -> goes back to collect_response, resets pending response
-    flow = transitionAcuityFlow(flow, { type: 'REJECT_ANSWER' });
+    flow = transitionAcuityFlow(flow, {type: 'REJECT_ANSWER'});
     expect(flow.state).toBe('collect_response');
     expect(flow.context.pendingResponse).toBeUndefined();
     expect(flow.context.metrics.repeatedAnswersCount).toBe(0);
@@ -527,8 +527,8 @@ describe('acuity flow state machine', () => {
     expect(flow.context.metrics.repeatedAnswersCount).toBe(1);
 
     // Confirm answer and score trial
-    flow = transitionAcuityFlow(flow, { type: 'CONFIRM_ANSWER' });
-    flow = transitionAcuityFlow(flow, { type: 'SCORE_TRIAL' });
+    flow = transitionAcuityFlow(flow, {type: 'CONFIRM_ANSWER'});
+    flow = transitionAcuityFlow(flow, {type: 'SCORE_TRIAL'});
     expect(flow.state).toBe('advance_level');
     // Wrong answer is tracked
     expect(flow.context.metrics.wrongAnswersCount).toBe(1);
@@ -549,9 +549,9 @@ describe('acuity flow state machine', () => {
       eyes: ['right'],
       timestamp: 1773918000000,
     });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_INTRO' });
-    flow = transitionAcuityFlow(flow, { type: 'ACK_PRACTICE' });
-    flow = transitionAcuityFlow(flow, { type: 'SELECT_EYE', eye: 'right' });
+    flow = transitionAcuityFlow(flow, {type: 'ACK_INTRO'});
+    flow = transitionAcuityFlow(flow, {type: 'ACK_PRACTICE'});
+    flow = transitionAcuityFlow(flow, {type: 'SELECT_EYE', eye: 'right'});
 
     expect(flow.state).toBe('prepare_eye_occlusion');
 

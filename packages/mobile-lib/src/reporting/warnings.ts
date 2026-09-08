@@ -1,4 +1,4 @@
-import type { DomainWarning } from '../types';
+import type {DomainWarning} from '../types';
 
 export const dedupeWarnings = (warnings: DomainWarning[]): DomainWarning[] => {
   const seen = new Set<string>();

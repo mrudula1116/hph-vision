@@ -1,6 +1,6 @@
-import { describe, expect, it } from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 
-import { calculateReliability } from '..';
+import {calculateReliability} from '..';
 
 describe('calculateReliability', () => {
   it('marks a perfect session as highly reliable', () => {
@@ -104,9 +104,9 @@ describe('calculateReliability', () => {
   });
 
   it('scores ideal response time higher than extreme values', () => {
-    const ideal = calculateReliability({ medianResponseTimeMs: 1500 });
-    const tooFast = calculateReliability({ medianResponseTimeMs: 50 });
-    const tooSlow = calculateReliability({ medianResponseTimeMs: 12000 });
+    const ideal = calculateReliability({medianResponseTimeMs: 1500});
+    const tooFast = calculateReliability({medianResponseTimeMs: 50});
+    const tooSlow = calculateReliability({medianResponseTimeMs: 12000});
 
     expect(ideal.score).toBeGreaterThan(tooFast.score);
     expect(ideal.score).toBeGreaterThan(tooSlow.score);

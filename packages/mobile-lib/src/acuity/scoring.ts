@@ -1,6 +1,6 @@
-import { clamp } from '../validation';
-import { isCorrectOptotypeAnswer } from './optotypes';
-import type { AcuityResult, AcuitySession } from './types';
+import {clamp} from '../validation';
+import {isCorrectOptotypeAnswer} from './optotypes';
+import type {AcuityResult, AcuitySession} from './types';
 
 const toSnellenEquivalent = (logMar: number): string => {
   const denominator = Math.round((20 * 10 ** logMar) / 5) * 5;

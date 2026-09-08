@@ -1,5 +1,5 @@
-import { clamp } from '../validation';
-import type { ReliabilitySignals } from './types';
+import {clamp} from '../validation';
+import type {ReliabilitySignals} from './types';
 
 const bounded = (value: number | undefined, fallback = 1): number =>
   clamp(value ?? fallback, 0, 1);

@@ -1,4 +1,4 @@
-import type { Eye, InputMethod, ISODateString } from '../types';
+import type {Eye, InputMethod, ISODateString} from '../types';
 
 export type OptotypeKind = 'tumblingE' | 'landoltC';
 export type OptotypeOrientation = 'up' | 'down' | 'left' | 'right';

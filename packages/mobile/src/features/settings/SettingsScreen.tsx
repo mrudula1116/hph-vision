@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
-import { getAudioReadiness } from '../../integrations/audio';
-import { getCameraReadiness } from '../../integrations/camera';
-import { getSensorReadiness } from '../../integrations/sensors';
-import { getSpeechRecognitionReadiness } from '../../integrations/speech-recognition';
-import { getTextToSpeechReadiness } from '../../integrations/text-to-speech';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
+import {StyleSheet, Text, View} from 'react-native';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
+import {getAudioReadiness} from '../../integrations/audio';
+import {getCameraReadiness} from '../../integrations/camera';
+import {getSensorReadiness} from '../../integrations/sensors';
+import {getSpeechRecognitionReadiness} from '../../integrations/speech-recognition';
+import {getTextToSpeechReadiness} from '../../integrations/text-to-speech';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
 
 type ReadinessItem = {
   label: string;
@@ -52,7 +52,7 @@ const readinessItems: ReadinessItem[] = [
 ];
 
 export const SettingsScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const returnRoute = state.consentAccepted
     ? (state.routeHistory[state.routeHistory.length - 1] ?? 'onboarding')
     : 'disclaimer';

@@ -1,4 +1,4 @@
-import { roundToStep } from '../validation';
+import {roundToStep} from '../validation';
 
 export const normalizeSphere = (sphere: number): number =>
   roundToStep(sphere, 0.25);

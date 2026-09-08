@@ -1,20 +1,20 @@
-import React, { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {
   evaluateTriage,
   getTriageQuestions,
   type TriageAnswer,
 } from '@hiperhealth/hphvision-lib';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
 
 const questions = getTriageQuestions();
 
 export const TriageScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const [answers, setAnswers] = useState<Record<string, boolean | undefined>>(
     () => {
       const initial: Record<string, boolean | undefined> = {};
@@ -42,7 +42,7 @@ export const TriageScreen = () => {
   const allAnswered = normalizedAnswers.length === questions.length;
 
   const selectAnswer = (questionId: string, value: boolean) => {
-    setAnswers(previous => ({ ...previous, [questionId]: value }));
+    setAnswers(previous => ({...previous, [questionId]: value}));
   };
 
   const markAllNo = () => {

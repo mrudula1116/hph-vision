@@ -1,6 +1,6 @@
-import { clamp } from '../validation';
-import { normalizeReliabilitySignals } from './signals';
-import type { ReliabilityResult, ReliabilitySignals } from './types';
+import {clamp} from '../validation';
+import {normalizeReliabilitySignals} from './signals';
+import type {ReliabilityResult, ReliabilitySignals} from './types';
 
 /**
  * Calculates a reliability score for a test session based on sensor signals.

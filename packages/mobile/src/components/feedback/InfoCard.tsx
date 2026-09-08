@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { colors, radii, spacing, typography } from '../../theme';
+import {StyleSheet, Text, View} from 'react-native';
+import {colors, radii, spacing, typography} from '../../theme';
 
 type InfoCardTone = 'default' | 'success' | 'warning' | 'danger';
 
@@ -13,12 +13,12 @@ type InfoCardProps = {
 
 const toneStyles: Record<
   InfoCardTone,
-  { backgroundColor: string; borderColor: string }
+  {backgroundColor: string; borderColor: string}
 > = {
-  default: { backgroundColor: colors.surface, borderColor: colors.border },
-  success: { backgroundColor: colors.successSoft, borderColor: colors.success },
-  warning: { backgroundColor: colors.warningSoft, borderColor: colors.warning },
-  danger: { backgroundColor: colors.dangerSoft, borderColor: colors.danger },
+  default: {backgroundColor: colors.surface, borderColor: colors.border},
+  success: {backgroundColor: colors.successSoft, borderColor: colors.success},
+  warning: {backgroundColor: colors.warningSoft, borderColor: colors.warning},
+  danger: {backgroundColor: colors.dangerSoft, borderColor: colors.danger},
 };
 
 export const InfoCard = ({

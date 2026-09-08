@@ -1,6 +1,6 @@
-import { HPHVISION_LIB_VERSION } from '../types';
-import { getDefaultProtocolVersions } from './versioning';
-import type { TestSession } from './types';
+import {HPHVISION_LIB_VERSION} from '../types';
+import {getDefaultProtocolVersions} from './versioning';
+import type {TestSession} from './types';
 
 export const createEmptyTestSession = (
   id: string,

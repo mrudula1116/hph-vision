@@ -123,15 +123,15 @@ export type RefractionFlowState =
   | 'aborted';
 
 export type RefractionFlowEvent =
-  | { type: 'START' }
+  | {type: 'START'}
   | {
       type: 'SELECT_EYE';
-      payload: { eye: Eye; targetMode?: 'single' | 'both' };
+      payload: {eye: Eye; targetMode?: 'single' | 'both'};
     }
-  | { type: 'PROCEED' }
-  | { type: 'PRESENT_OPTION_ONE' }
-  | { type: 'PRESENT_OPTION_TWO' }
-  | { type: 'ASK_QUESTION' }
+  | {type: 'PROCEED'}
+  | {type: 'PRESENT_OPTION_ONE'}
+  | {type: 'PRESENT_OPTION_TWO'}
+  | {type: 'ASK_QUESTION'}
   | {
       type: 'SUBMIT_RESPONSE';
       payload: {
@@ -142,10 +142,10 @@ export type RefractionFlowEvent =
         responseTimeMs?: number;
       };
     }
-  | { type: 'CHECK_CONVERGENCE' }
-  | { type: 'SWITCH_EYE' }
-  | { type: 'ABORT' }
-  | { type: 'RESTORE'; payload: { context: RefractionFlowContext } };
+  | {type: 'CHECK_CONVERGENCE'}
+  | {type: 'SWITCH_EYE'}
+  | {type: 'ABORT'}
+  | {type: 'RESTORE'; payload: {context: RefractionFlowContext}};
 
 export type RefractionFlowContext = {
   state: RefractionFlowState;

@@ -1,5 +1,5 @@
-import { describe, expect, it } from '@jest/globals';
-import { normalizeRefractionAnswer } from '../normalization';
+import {describe, expect, it} from '@jest/globals';
+import {normalizeRefractionAnswer} from '../normalization';
 
 describe('normalizeRefractionAnswer', () => {
   it('normalizes exact canonical tokens', () => {

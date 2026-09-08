@@ -6,7 +6,7 @@ import {
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
-import { colors, radii, spacing, typography } from '../../theme';
+import {colors, radii, spacing, typography} from '../../theme';
 
 type PrimaryButtonVariant = 'primary' | 'secondary' | 'danger';
 
@@ -42,10 +42,10 @@ export const PrimaryButton = ({
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{disabled}}
       disabled={disabled}
       onPress={onPress}
-      style={({ pressed }) => [
+      style={({pressed}) => [
         styles.button,
         {
           backgroundColor: backgroundColorByVariant[variant],
@@ -56,7 +56,7 @@ export const PrimaryButton = ({
         },
         style,
       ]}>
-      <Text style={[styles.label, { color: textColorByVariant[variant] }]}>
+      <Text style={[styles.label, {color: textColorByVariant[variant]}]}>
         {label}
       </Text>
     </Pressable>

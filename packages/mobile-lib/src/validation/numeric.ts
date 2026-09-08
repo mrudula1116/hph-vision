@@ -1,9 +1,4 @@
-import {
-  invalid,
-  valid,
-  validationIssue,
-  type ValidationResult,
-} from './result';
+import {invalid, valid, validationIssue, type ValidationResult} from './result';
 
 export const isFiniteNumber = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);

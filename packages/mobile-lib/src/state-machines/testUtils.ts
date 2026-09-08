@@ -1,9 +1,9 @@
 // test utilities for asserting state machine flows
 // all comments are lowercase to follow workspace guidelines
 
-import { expect } from '@jest/globals';
-import { transition, InvalidTransitionError } from './engine';
-import type { StateMachineConfig, StateMachineEvent } from './types';
+import {expect} from '@jest/globals';
+import {transition, InvalidTransitionError} from './engine';
+import type {StateMachineConfig, StateMachineEvent} from './types';
 
 // asserts that a single event leads to a specific target state and context condition
 export function assertTransition<

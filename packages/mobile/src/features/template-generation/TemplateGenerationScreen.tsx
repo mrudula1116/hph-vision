@@ -1,23 +1,23 @@
-import React, { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {
   generateTemplateDocument,
   type PageSize,
   type TemplateOptions,
 } from '@hiperhealth/hphvision-lib';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
-import { createTemplatePreviewFile } from '../../integrations/filesystem/reportFiles';
-import { shareGeneratedFile } from '../../integrations/sharing/share';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
-import { formatMillimeters } from '../../utils/format';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
+import {createTemplatePreviewFile} from '../../integrations/filesystem/reportFiles';
+import {shareGeneratedFile} from '../../integrations/sharing/share';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
+import {formatMillimeters} from '../../utils/format';
 
 const pageSizes: PageSize[] = ['LETTER', 'A4'];
 
 export const TemplateGenerationScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const [pageSize, setPageSize] = useState<PageSize>('LETTER');
   const [shareMessage, setShareMessage] = useState<string | undefined>();
   const phone = state.phoneGeometry;

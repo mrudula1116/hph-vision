@@ -78,7 +78,7 @@ export const generateClockDialPrompt = (): number[] => [
 ];
 
 export const generateFanChartPrompt = (): number[] =>
-  Array.from({ length: 18 }, (_, i) => (i + 1) * 10);
+  Array.from({length: 18}, (_, i) => (i + 1) * 10);
 
 export const generateLineOrientationPrompt = (
   currentAxisRange: [number, number],

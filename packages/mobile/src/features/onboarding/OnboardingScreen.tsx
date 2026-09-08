@@ -1,19 +1,19 @@
-import React, { useMemo, useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { InfoCard } from '../../components/feedback/InfoCard';
-import { FieldLabel } from '../../components/forms/FieldLabel';
-import { PrimaryButton } from '../../components/forms/PrimaryButton';
-import { Screen } from '../../components/layout/Screen';
+import React, {useMemo, useState} from 'react';
+import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {InfoCard} from '../../components/feedback/InfoCard';
+import {FieldLabel} from '../../components/forms/FieldLabel';
+import {PrimaryButton} from '../../components/forms/PrimaryButton';
+import {Screen} from '../../components/layout/Screen';
 import {
   type OnboardingAnswers,
   useHphVisionApp,
 } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
+import {colors, radii, spacing, typography} from '../../theme';
 
 const ageRanges = ['Under 18', '18–39', '40–64', '65+'];
 const yesNoOptions = [
-  { label: 'Yes', value: true },
-  { label: 'No', value: false },
+  {label: 'Yes', value: true},
+  {label: 'No', value: false},
 ];
 
 type ToggleRowProps = {
@@ -22,7 +22,7 @@ type ToggleRowProps = {
   onChange: (value: boolean) => void;
 };
 
-const ToggleRow = ({ label, value, onChange }: ToggleRowProps) => (
+const ToggleRow = ({label, value, onChange}: ToggleRowProps) => (
   <View style={styles.toggleRow}>
     <Text style={styles.toggleLabel}>{label}</Text>
     <View style={styles.choiceRow}>
@@ -53,7 +53,7 @@ const ToggleRow = ({ label, value, onChange }: ToggleRowProps) => (
 );
 
 export const OnboardingScreen = () => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const existing = state.onboarding;
   const [ageRange, setAgeRange] = useState(existing?.ageRange ?? '18–39');
   const [currentGlasses, setCurrentGlasses] = useState<boolean | undefined>(

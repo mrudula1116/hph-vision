@@ -1,4 +1,4 @@
-import { DEVICE_PROFILES } from './database';
+import {DEVICE_PROFILES} from './database';
 import type {
   DeviceDetectionInput,
   DeviceProfile,
@@ -54,7 +54,7 @@ export const matchDeviceProfile = (
   profiles: DeviceProfile[] = DEVICE_PROFILES,
 ): DeviceProfileMatch => {
   const ranked = profiles
-    .map(profile => ({ profile, score: scoreProfile(input, profile) }))
+    .map(profile => ({profile, score: scoreProfile(input, profile)}))
     .sort((a, b) => b.score - a.score);
   const best = ranked[0];
 

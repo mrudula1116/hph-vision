@@ -1,10 +1,10 @@
-import type { AcuityResult } from '../acuity';
-import type { DeviceProfile } from '../device-profile';
-import type { RefractionResult } from '../refraction';
-import type { ReliabilityResult } from '../reliability';
-import type { DomainWarning, ISODateString } from '../types';
-import type { TriageResult } from '../triage';
-import type { TemplateMetadata } from '../template-generator';
+import type {AcuityResult} from '../acuity';
+import type {DeviceProfile} from '../device-profile';
+import type {RefractionResult} from '../refraction';
+import type {ReliabilityResult} from '../reliability';
+import type {DomainWarning, ISODateString} from '../types';
+import type {TriageResult} from '../triage';
+import type {TemplateMetadata} from '../template-generator';
 
 // named alias used when attaching session-level warnings to a report or export
 export type SessionWarning = DomainWarning;

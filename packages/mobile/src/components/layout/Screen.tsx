@@ -7,10 +7,10 @@ import {
   Text,
   View,
 } from 'react-native';
-import { getRouteDescriptor, type AppRoute } from '../../app/routes';
-import { useHphVisionApp } from '../../state/sessionStore';
-import { colors, radii, spacing, typography } from '../../theme';
-import { PrimaryButton } from '../forms/PrimaryButton';
+import {getRouteDescriptor, type AppRoute} from '../../app/routes';
+import {useHphVisionApp} from '../../state/sessionStore';
+import {colors, radii, spacing, typography} from '../../theme';
+import {PrimaryButton} from '../forms/PrimaryButton';
 
 type ScreenProps = {
   route: AppRoute;
@@ -29,7 +29,7 @@ export const Screen = ({
   footer,
   showBack = true,
 }: ScreenProps) => {
-  const { state, actions } = useHphVisionApp();
+  const {state, actions} = useHphVisionApp();
   const descriptor = getRouteDescriptor(route);
   const canGoBack = showBack && state.routeHistory.length > 0;
 

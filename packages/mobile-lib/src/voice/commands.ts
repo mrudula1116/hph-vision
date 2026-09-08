@@ -1,4 +1,4 @@
-import type { VoiceCommand } from './types';
+import type {VoiceCommand} from './types';
 
 export const VOICE_COMMANDS: VoiceCommand[] = [
   'better',

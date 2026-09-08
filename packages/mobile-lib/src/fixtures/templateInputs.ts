@@ -1,5 +1,5 @@
-import { toPhoneGeometry } from '../device-profile';
-import type { TemplateInput } from '../template-generator';
+import {toPhoneGeometry} from '../device-profile';
+import type {TemplateInput} from '../template-generator';
 import {
   fixtureMediumPhone,
   fixtureSmallPhone,

@@ -3,8 +3,8 @@ import {
   nextRefractionTrial,
   recordRefractionResponse,
 } from './stateMachine';
-import { scoreRefractionSession, combineRefractionResults } from './scoring';
-import type { Eye } from '../types';
+import {scoreRefractionSession, combineRefractionResults} from './scoring';
+import type {Eye} from '../types';
 import type {
   RefractionFlowContext,
   RefractionFlowEvent,
@@ -68,12 +68,12 @@ const updateActiveSession = (
   session: RefractionSession,
 ): RefractionFlowContext => {
   if (context.activeEye === 'right') {
-    return { ...context, rightEyeSession: session };
+    return {...context, rightEyeSession: session};
   }
   if (context.activeEye === 'left') {
-    return { ...context, leftEyeSession: session };
+    return {...context, leftEyeSession: session};
   }
-  return { ...context, binocularSession: session };
+  return {...context, binocularSession: session};
 };
 
 // scores all completed sessions and merges them into one result
@@ -155,7 +155,7 @@ export const transitionRefractionFlow = (
   switch (context.state) {
     case 'intro': {
       if (event.type === 'START' || event.type === 'PROCEED') {
-        return { ...context, state: 'select_eye' };
+        return {...context, state: 'select_eye'};
       }
       break;
     }
@@ -211,11 +211,11 @@ export const transitionRefractionFlow = (
 
     case 'show_option_one': {
       if (event.type === 'PRESENT_OPTION_TWO' || event.type === 'PROCEED') {
-        return { ...context, state: 'show_option_two' };
+        return {...context, state: 'show_option_two'};
       }
       if (event.type === 'SUBMIT_RESPONSE') {
         return transitionRefractionFlow(
-          { ...context, state: 'collect_response' },
+          {...context, state: 'collect_response'},
           event,
         );
       }
@@ -224,11 +224,11 @@ export const transitionRefractionFlow = (
 
     case 'show_option_two': {
       if (event.type === 'ASK_QUESTION' || event.type === 'PROCEED') {
-        return { ...context, state: 'ask_better_worse_same' };
+        return {...context, state: 'ask_better_worse_same'};
       }
       if (event.type === 'SUBMIT_RESPONSE') {
         return transitionRefractionFlow(
-          { ...context, state: 'collect_response' },
+          {...context, state: 'collect_response'},
           event,
         );
       }
@@ -237,11 +237,11 @@ export const transitionRefractionFlow = (
 
     case 'ask_better_worse_same': {
       if (event.type === 'PROCEED') {
-        return { ...context, state: 'collect_response' };
+        return {...context, state: 'collect_response'};
       }
       if (event.type === 'SUBMIT_RESPONSE') {
         return transitionRefractionFlow(
-          { ...context, state: 'collect_response' },
+          {...context, state: 'collect_response'},
           event,
         );
       }
@@ -250,7 +250,7 @@ export const transitionRefractionFlow = (
 
     case 'collect_response': {
       if (event.type === 'SUBMIT_RESPONSE') {
-        const { answer, rawInput, inputMethod, confidence, responseTimeMs } =
+        const {answer, rawInput, inputMethod, confidence, responseTimeMs} =
           event.payload;
         const activeSession = getActiveSession(context);
         if (!activeSession || !context.currentTrial) {
@@ -300,8 +300,8 @@ export const transitionRefractionFlow = (
     case 'update_estimate': {
       if (event.type === 'PROCEED' || event.type === 'CHECK_CONVERGENCE') {
         return transitionRefractionFlow(
-          { ...context, state: 'check_convergence' },
-          { type: 'CHECK_CONVERGENCE' },
+          {...context, state: 'check_convergence'},
+          {type: 'CHECK_CONVERGENCE'},
         );
       }
       break;
