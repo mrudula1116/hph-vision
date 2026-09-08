@@ -5,7 +5,9 @@
   "packageManager": "pnpm@10.0.0",
   "workspaces": [
     "packages/mobile",
-    "packages/mobile-lib"
+    "packages/mobile-lib",
+    "packages/hphvision-core",
+    "packages/hphvision-mobile"
   ],
   "scripts": {
     "mobile:start": "yarn workspace @hiperhealth/hphvision start",
