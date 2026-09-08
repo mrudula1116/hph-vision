@@ -213,7 +213,7 @@ groups:
 
   release:
     vars:
-      app: |
+      app: >-
         npx --yes
         -p semantic-release
         -p conventional-changelog-conventionalcommits

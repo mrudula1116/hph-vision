@@ -37,7 +37,10 @@ jobs:
           auto-update-conda: true
           conda-solver: libmamba
           python-version: '3.11'
-
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+          run_install: false
       - name: Install dependencies
         run: |
           poetry install
