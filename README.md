@@ -1,16 +1,17 @@
 # HPH Vision
 
-HPH Vision is organized as a TypeScript monorepo using **pnpm workspaces** and **Turborepo**. The repository contains a React Native mobile application, a shared React Native library, a FastAPI service, and a shared Python backend library.
+HPH Vision is organized as a TypeScript monorepo using **pnpm workspaces** and **Turborepo**. The repository contains a React Native mobile application, a shared React Native library, TypeScript core/mobile packages, a FastAPI service, and a shared Python backend library.
 
 ## Repository Structure
 
 ```text
 packages/
-├── mobile/          React Native application (@hiperhealth/hphvision)
-├── mobile-lib/      Shared React Native library (@hiperhealth/hphvision-lib)
-├── hphvision-core/  Shared TypeScript core package
-├── restapi/         FastAPI application
-└── api-core/        Shared Python backend library
+├── mobile/             React Native application (@hiperhealth/hphvision)
+├── mobile-lib/         Shared React Native library (@hiperhealth/hphvision-lib)
+├── hphvision-core/     Shared TypeScript core package (@hiperhealth/hphvision-core)
+├── hphvision-mobile/   TypeScript mobile package (@hiperhealth/hphvision-mobile)
+├── restapi/            FastAPI application
+└── api-core/           Shared Python backend library
 ```
 
 ## Monorepo Tooling
@@ -162,6 +163,16 @@ Location:
 packages/hphvision-core
 ```
 
+## @hiperhealth/hphvision-mobile
+
+TypeScript mobile package that depends on `@hiperhealth/hphvision-core`.
+
+Location:
+
+```text
+packages/hphvision-mobile
+```
+
 ## @hiperhealth/hphvision
 
 React Native application.
@@ -228,3 +239,7 @@ The repository CI validates:
 - Type checking
 
 using pnpm workspaces, Turborepo, Poetry, and Makim.
+
+## License
+
+This project is licensed under the BSD 3-Clause License. See the [LICENSE](LICENSE) file for details.
