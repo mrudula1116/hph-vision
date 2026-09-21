@@ -27,6 +27,7 @@ groups:
         help: run all Python and JavaScript tests
         run: |
           pnpm test
+          makim api.test
 
       typecheck:
         help: run all TypeScript type checks and Python mypy checks
@@ -95,6 +96,7 @@ groups:
           makim mobile-lib.lint
           makim mobile-lib.test
           makim mobile-lib.typecheck
+
   api-core:
     tasks:
       check:
